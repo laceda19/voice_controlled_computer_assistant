@@ -110,7 +110,25 @@ def mouse_control(self,command):
     elif "click right" in command:
         pyautogui.rightClick()
         self.speak("Right Clicked")
+
+import time
+
+def scroll_control(self, command):
+
+    if "scroll up" in command:
+        pyautogui.scroll(500)
+
+    elif "scroll down" in command:
+        pyautogui.scroll(-500)
+
+def take_screenshot(self):
+
+    filename = f"screenshot_{int(time.time())}.png"
+    screenshot = pyautogui.screenshot()
+    screenshot.save(filename)
+    self.speak("Screenshot taken")
     
+
 
 
 
