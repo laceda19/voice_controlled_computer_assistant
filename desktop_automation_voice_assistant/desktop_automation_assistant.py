@@ -3,12 +3,13 @@ import pyttsx3
 
 class Assistant:
     def __init__(self):
-        self.engine = pyttsx3()
+        self.engine = pyttsx3.init()
 
     def speak(self, text):
-        print(f"\🤖 {text}")
+        print(f"\n🤖 {text}")
         self.engine.say(text)
         self.engine.runAndWait()
+
 class VoiceAssistant(Assistant):
     def __init__(self):
         super().__init__()
@@ -34,13 +35,7 @@ class VoiceAssistant(Assistant):
 import os
 import webbrowser
 
-class VoiceAssistant(Assistant):
-    def __init__(self):
-        super().__init__()
-        self.__assistant_name = "Jarvis"
-        self.recognizer = sr.Recognizer()
-
-    def open_app(self, command):
+def open_app(self, command):
 
         if "chrome" in command:
             os.system("start chrome")
@@ -66,6 +61,9 @@ class VoiceAssistant(Assistant):
             webbrowser.open("https://google.com")
             self.speak("Opening Google")
 
+
+
+
 def search_google(self,command):
 
     search_term = command.replace("search","")
@@ -78,6 +76,9 @@ def search_google(self,command):
 
 import pyautogui
 
+
+
+
 def type_text(self, command):
 
     text = command.replace("type","")
@@ -85,6 +86,9 @@ def type_text(self, command):
     pyautogui.write(text, interval=0.05)
 
     self.speak("Typing completed")
+
+
+
 
 def mouse_control(self,command):
     if "move right" in command:
@@ -113,6 +117,9 @@ def mouse_control(self,command):
 
 import time
 
+
+
+
 def scroll_control(self, command):
 
     if "scroll up" in command:
@@ -120,6 +127,9 @@ def scroll_control(self, command):
 
     elif "scroll down" in command:
         pyautogui.scroll(-500)
+
+
+
 
 def take_screenshot(self):
 
@@ -129,6 +139,9 @@ def take_screenshot(self):
     self.speak("Screenshot taken")
 
 import keyboard
+
+
+
 
 def volume_control(self, command):
 
@@ -144,6 +157,9 @@ def volume_control(self, command):
 
     elif "mute" in command:
         keyboard.press_and_release("volume mute")
+
+
+
 
 def window_control(self, command):
 
@@ -190,7 +206,7 @@ while True:
         assistant.take_screenshot()
 
     elif "volume" in command or "mute" in command:
-        assistant.volme_control(command)
+        assistant.volume_control(command)
 
     elif (
             "close" in command
