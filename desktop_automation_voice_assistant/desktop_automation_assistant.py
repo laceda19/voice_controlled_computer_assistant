@@ -127,7 +127,25 @@ def take_screenshot(self):
     screenshot = pyautogui.screenshot()
     screenshot.save(filename)
     self.speak("Screenshot taken")
-    
+
+import keyboard
+
+def volume_control(self, command):
+
+    if "volume up" in command:
+
+        for count in range(5):
+            keyboard.press_and_release("volume up")
+
+    elif "volume down" in command:
+
+        for count in range(5):
+            keyboard.press_and_release("volume down")
+
+    elif "mute" in command:
+        keyboard.press_and_release("volume mute")
+        
+
 
 
 
