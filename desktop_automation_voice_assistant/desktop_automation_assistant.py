@@ -31,6 +31,42 @@ class VoiceAssistant(Assistant):
             except Exception as error_message:
                 print("⚠️ ERROR:", error_message)
                 return""
+import os
+import webbrowser
+
+class VoiceAsisstant(Assistant):
+    def __init__(self):
+        super().__init__()
+        self.__assistant_name = "Jarvis"
+        self.recognizer = sr.Recognizer()
+
+    def open_app(self, command):
+
+        if "chrome" in command:
+            os.system("start chrome")
+            self.speak("Opening Chrome")
+
+        elif "calculator" in command:
+            os.system("start calculator")
+            self.speak("Opening Calculator")
+
+        elif "notepad" in command:
+            os.system("start notepad")
+            self.speak("Opening Notepad")
+
+        elif "paint" in command:
+            os.system("mspaint")
+            self.speak("Opening Paint")
+
+        elif "youtube" in command:
+            webbrowser.open("https://youtube.com")
+            self.speak("Opening Youtube")
+
+        elif "google" in command:
+            webbrowser.open("https://google.com")
+            self.speak("Opening Google")
+
+
 
 
 
