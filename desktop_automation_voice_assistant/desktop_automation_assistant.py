@@ -1,5 +1,10 @@
 import speech_recognition as sr
 import pyttsx3
+import os
+import webbrowser
+import pyautogui
+import time
+import keyboard
 
 class Assistant:
     def __init__(self):
@@ -32,10 +37,11 @@ class VoiceAssistant(Assistant):
             except Exception as error_message:
                 print("⚠️ ERROR:", error_message)
                 return""
-import os
-import webbrowser
 
-def open_app(self, command):
+
+
+
+    def open_app(self, command):
 
         if "chrome" in command:
             os.system("start chrome")
@@ -64,117 +70,111 @@ def open_app(self, command):
 
 
 
-def search_google(self,command):
+    def search_google(self,command):
 
-    search_term = command.replace("search","")
+        search_term = command.replace("search","")
 
-    url = f"https://www.google.com/search?q={search_term}"
+        url = f"https://www.google.com/search?q={search_term}"
 
-    webbrowser.open(url)
+        webbrowser.open(url)
 
-    self.speak(f"Searching {search_term}")
-
-import pyautogui
+        self.speak(f"Searching {search_term}")
 
 
 
 
-def type_text(self, command):
+    def type_text(self, command):
 
-    text = command.replace("type","")
+        text = command.replace("type","")
 
-    pyautogui.write(text, interval=0.05)
+        pyautogui.write(text, interval=0.05)
 
-    self.speak("Typing completed")
-
-
-
-
-def mouse_control(self,command):
-    if "move right" in command:
-        pyautogui.moveRel(100, 0)
-
-    elif "move left" in command:
-        pyautogui.moveRel(-100, 0)
-
-    elif "move up" in command:
-        pyautogui.moveRel(0, -100)
-
-    elif "move down" in command:
-        pyautogui.moveRel(0, 100)
-
-    elif "click" in command:
-        pyautogui.click()
-        self.speak("Mouse Clicked")
-
-    elif "double click" in command:
-        pyautogui.doubleClick()
-        self.speak("Double Click")
-
-    elif "click right" in command:
-        pyautogui.rightClick()
-        self.speak("Right Clicked")
-
-import time
+        self.speak("Typing completed")
 
 
 
 
-def scroll_control(self, command):
+    def mouse_control(self,command):
+        if "move right" in command:
+            pyautogui.moveRel(100, 0)
 
-    if "scroll up" in command:
-        pyautogui.scroll(500)
+        elif "move left" in command:
+            pyautogui.moveRel(-100, 0)
 
-    elif "scroll down" in command:
-        pyautogui.scroll(-500)
+        elif "move up" in command:
+            pyautogui.moveRel(0, -100)
 
+        elif "move down" in command:
+            pyautogui.moveRel(0, 100)
 
+        elif "click" in command:
+            pyautogui.click()
+            self.speak("Mouse Clicked")
 
+        elif "double click" in command:
+            pyautogui.doubleClick()
+            self.speak("Double Click")
 
-def take_screenshot(self):
-
-    filename = f"screenshot_{int(time.time())}.png"
-    screenshot = pyautogui.screenshot()
-    screenshot.save(filename)
-    self.speak("Screenshot taken")
-
-import keyboard
-
-
-
-
-def volume_control(self, command):
-
-    if "volume up" in command:
-
-        for count in range(5):
-            keyboard.press_and_release("volume up")
-
-    elif "volume down" in command:
-
-        for count in range(5):
-            keyboard.press_and_release("volume down")
-
-    elif "mute" in command:
-        keyboard.press_and_release("volume mute")
+        elif "click right" in command:
+            pyautogui.rightClick()
+            self.speak("Right Clicked")
 
 
 
 
-def window_control(self, command):
+    def scroll_control(self, command):
 
-    if "close window" in command:
-        pyautogui.hotkey("alt", "f4")
-        self.speak("Closing window")
+        if "scroll up" in command:
+            pyautogui.scroll(500)
 
-    elif "minimize" in command:
-        pyautogui.hotkey("win", "down")
+        elif "scroll down" in command:
+            pyautogui.scroll(-500)
 
-    elif "copy" in command:
-        pyautogui.hotkey("ctrl", "c")
 
-    elif "paste" in command:
-        pyautogui.hotkey("ctrl", "v")
+
+
+    def take_screenshot(self):
+
+        filename = f"screenshot_{int(time.time())}.png"
+        screenshot = pyautogui.screenshot()
+        screenshot.save(filename)
+        self.speak("Screenshot taken")
+
+
+
+
+    def volume_control(self, command):
+
+        if "volume up" in command:
+
+            for count in range(5):
+                keyboard.press_and_release("volume up")
+
+        elif "volume down" in command:
+
+            for count in range(5):
+                keyboard.press_and_release("volume down")
+
+        elif "mute" in command:
+            keyboard.press_and_release("volume mute")
+
+
+
+
+    def window_control(self, command):
+
+        if "close window" in command:
+            pyautogui.hotkey("alt", "f4")
+            self.speak("Closing window")
+
+        elif "minimize" in command:
+            pyautogui.hotkey("win", "down")
+
+        elif "copy" in command:
+            pyautogui.hotkey("ctrl", "c")
+
+        elif "paste" in command:
+            pyautogui.hotkey("ctrl", "v")
 
 assistant = VoiceAssistant()
 
