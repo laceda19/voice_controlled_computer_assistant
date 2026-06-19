@@ -34,7 +34,7 @@ class VoiceAssistant(Assistant):
 import os
 import webbrowser
 
-class VoiceAsisstant(Assistant):
+class VoiceAssistant(Assistant):
     def __init__(self):
         super().__init__()
         self.__assistant_name = "Jarvis"
@@ -60,11 +60,22 @@ class VoiceAsisstant(Assistant):
 
         elif "youtube" in command:
             webbrowser.open("https://youtube.com")
-            self.speak("Opening Youtube")
+            self.speak("Opening youtube")
 
         elif "google" in command:
             webbrowser.open("https://google.com")
             self.speak("Opening Google")
+            
+def search_google(self,command):
+
+    search_term = command.replace("search","")
+
+    url = f"https://www.google.com/search?q={search_term}"
+
+    webbrowser.open(url)
+
+    self.speak(f"Searching {search_term}")
+
 
 
 
