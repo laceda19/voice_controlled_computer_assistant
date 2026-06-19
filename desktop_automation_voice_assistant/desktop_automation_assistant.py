@@ -65,7 +65,7 @@ class VoiceAssistant(Assistant):
         elif "google" in command:
             webbrowser.open("https://google.com")
             self.speak("Opening Google")
-            
+
 def search_google(self,command):
 
     search_term = command.replace("search","")
@@ -75,6 +75,17 @@ def search_google(self,command):
     webbrowser.open(url)
 
     self.speak(f"Searching {search_term}")
+
+import pyautogui
+
+def type_text(self, command):
+
+    text = command.replace("type","")
+
+    pyautogui.write(text, interval=0.05)
+
+    self.speak("Typing completed")
+    
 
 
 
