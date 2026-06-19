@@ -160,7 +160,49 @@ def window_control(self, command):
     elif "paste" in command:
         pyautogui.hotkey("ctrl", "v")
 
+assistant = VoiceAssistant()
 
+assistant.speak("Voice assistant started")
+
+while True:
+
+    command = assistant.listen()
+
+    if not command:
+        continue
+
+    if "open" in command:
+        assistant.open_app(command)
+
+    elif "search" in command:
+        assistant.search_google(command)
+
+    elif "type" in command:
+        assistant.type_text(command)
+
+    elif "move" in command or "click" in command:
+        assistant.mouse_control(command)
+
+    elif "scroll" in command:
+        assistant.scroll_control(command)
+
+    elif "screenshot" in command:
+        assistant.take_screenshot()
+
+    elif "volume" in command or "mute" in command:
+        assistant.volme_control(command)
+
+    elif (
+            "close" in command
+            or "copy" in command
+            or "paste" in command
+            or "minimize" in command
+    ):
+        assistant.window_control(command)
+
+    elif "exit" in command or "quit" in command:
+        assistant.speak("Goodbye")
+        break
 
 
 
